@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExitLevel : MonoBehaviour
+public class BoxConundrum : MonoBehaviour
 {
-    public GameObject UIpanel;
+    public string sortingLayer;
     void OnTriggerEnter2D(Collider2D other)
     {
        // other.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = sortingLayer;
-        other.gameObject.SetActive(false);
-        UIpanel.SetActive(true);
+        
     }
 }
