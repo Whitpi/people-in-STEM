@@ -6,6 +6,7 @@ public class Interactable : MonoBehaviour
 {
     [SerializeField]GameObject box;
     [SerializeField]GameObject firstPuzzle;
+    [SerializeField]GameObject UIcamera;
     
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -13,5 +14,7 @@ public class Interactable : MonoBehaviour
         box.SetActive(true);
         Debug.Log("Interact!!!");
         gameObject.SetActive(false);
+        Camera.current.enabled = false;
+        UIcamera.SetActive(true);
     }
 }

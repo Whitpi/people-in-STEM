@@ -20,6 +20,7 @@ public class ClickMovement : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0)){
             lastClickedPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
             moving = true;
         }
         
@@ -33,10 +34,10 @@ public class ClickMovement : MonoBehaviour
        if(moving && (Vector2)transform.position != lastClickedPos){
 
             //Moves Towards Cursor
-            float step = speed * Time.deltaTime;
-            rb.MovePosition(Vector2.MoveTowards(transform.position, lastClickedPos, step));
+            /* float step = speed * Time.deltaTime;
+            rb.MovePosition(Vector2.MoveTowards(transform.position, lastClickedPos, step)); */
             //rb.MovePosition(rb.position + ((Vector2)transform.up * step));
-
+            transform.position = lastClickedPos;
             //Rotates towards cursor
             Vector2 dir = lastClickedPos -(Vector2)transform.position;
             float angle = Vector2.SignedAngle(Vector2.up, dir);
