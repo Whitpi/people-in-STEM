@@ -8,7 +8,7 @@ public class linetest : MonoBehaviour
     [SerializeField] lineController line;
     int clicks = 0;
 
-    [SerializeField] Camera camera;
+    [SerializeField] new Camera camera;
     private void Start() {
         
         
