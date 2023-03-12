@@ -9,6 +9,7 @@ public class EnemyMovement : MonoBehaviour
     Vector2 movement;
     Transform transform;
     bool collided;
+    bool isCurled;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,13 +22,13 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-            
+
+
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if(!collided)
+        if (!collided && !isCurled)
         {
             movement.y *= -1;
 
@@ -37,25 +38,38 @@ public class EnemyMovement : MonoBehaviour
 
             collided = true;
         }
-        if(other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !isCurled)
         {
             playerWormMove script = other.gameObject.GetComponent<playerWormMove>();
-            if(!script.greenBook && !script.redBook)
+            if (!script.greenBook && !script.redBook)
             {
                 Destroy(other.gameObject);
             }
-            else if(script.greenBook)
+            else if (script.greenBook)
             {
-                Debug.Log("GreenDay");
-                //do smth
+                //Debug.Log("GreenDay");
             }
         }
-        
+
     }
     private void FixedUpdate()
     {
-        
-        rb.MovePosition(rb.position + movement * wormSpeed * Time.deltaTime);
-        if(collided) collided = false;
+        if(!isCurled)
+            rb.MovePosition(rb.position + movement * wormSpeed * Time.deltaTime);
+        if (collided) collided = false;
+    }
+
+
+    public void Curl()
+    {
+        Vector3 scale = transform.localScale;
+        //Quaternion rotation = transform.rotation;
+        scale.x += 1;
+        //rotation.z = 90;
+        rb.rotation = 90f;
+        transform.localScale = scale;
+        //transform.rotation = rotation;
+
+        isCurled = true;
     }
 }

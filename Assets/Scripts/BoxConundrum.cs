@@ -6,17 +6,17 @@ public class BoxConundrum : MonoBehaviour
 {
     BoxCollider2D boxCollider;
     Rigidbody2D rb;
-    float timeToMove = 0.2f;
+    //float timeToMove = 0.2f;
     bool isMoving;
-    public float moveTime = 0.1f;
-    float inverseMoveTime;
+    //public float moveTime = 0.1f;
+    //float inverseMoveTime;
 
 
     private void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
-        inverseMoveTime = 1f / moveTime;
+        //inverseMoveTime = 1f / moveTime;
     }
 
     public void BoxPush(Vector2 direction, LayerMask blockingLayer)
@@ -42,6 +42,8 @@ public class BoxConundrum : MonoBehaviour
         RaycastHit2D hit = Physics2D.Linecast(start, end, blockingLayer);
         boxCollider.enabled = true;
 
+        //Debug.Log(hit.transform.position);
+
         if (hit.transform == null && !isMoving)
         {
             //rb.AddForce(direction * 2, ForceMode2D.Impulse);
@@ -53,29 +55,29 @@ public class BoxConundrum : MonoBehaviour
         }
     }
 
-    private IEnumerator NotSmoothMovement(Vector3 end)
-    {
-        //The object is now moving.
-        isMoving = true;
+    // private IEnumerator NotSmoothMovement(Vector3 end)
+    // {
+    //     //The object is now moving.
+    //     isMoving = true;
 
-        //Calculate the remaining distance to move based on the sqr magnitude difference of current position and end 
-        float sqrRemainingDistance = (transform.position - end).sqrMagnitude;
+    //     //Calculate the remaining distance to move based on the sqr magnitude difference of current position and end 
+    //     float sqrRemainingDistance = (transform.position - end).sqrMagnitude;
 
-        //while distance is more than almost zero number
-        while (sqrRemainingDistance > float.Epsilon)
-        {
-            //find position to move based on moveTime(a certain precentage of all the needed to move vector)
-            Vector3 newPosition = Vector3.MoveTowards(rb.position, end, inverseMoveTime * Time.deltaTime);
-            //Move the object through rigidbody 
-            rb.MovePosition(newPosition);
-            //recalculate the remaining distance
-            sqrRemainingDistance = (transform.position - end).sqrMagnitude;
-            yield return null;
-        }
+    //     //while distance is more than almost zero number
+    //     while (sqrRemainingDistance > float.Epsilon)
+    //     {
+    //         //find position to move based on moveTime(a certain precentage of all the needed to move vector)
+    //         Vector3 newPosition = Vector3.MoveTowards(rb.position, end, inverseMoveTime * Time.deltaTime);
+    //         //Move the object through rigidbody 
+    //         rb.MovePosition(newPosition);
+    //         //recalculate the remaining distance
+    //         sqrRemainingDistance = (transform.position - end).sqrMagnitude;
+    //         yield return null;
+    //     }
 
-        //The object is no longer moving.
-        isMoving = false;
-    }
+    //     //The object is no longer moving.
+    //     isMoving = false;
+    // }
 
 
 }

@@ -13,10 +13,13 @@ public class playerWormMove : MonoBehaviour
     [SerializeField] GameObject greenBookUI;
     public bool greenBook;
     public bool redBook;
+
+    [SerializeField] LayerMask blockingLayer;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -40,6 +43,26 @@ public class playerWormMove : MonoBehaviour
             other.gameObject.SetActive(false);
         }
 
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        BoxConundrum box = other.transform.GetComponent<BoxConundrum>();
+
+        RaycastHit2D hit;
+        Vector2 start = transform.position;
+        Vector2 end = start + movement;
+
+        if (box != null)
+        {
+            
+            boxCollider.enabled = false;
+            hit = Physics2D.Linecast(start, end, blockingLayer);
+            boxCollider.enabled = true;
+           //Debug.Log(hit.transform.position);
+            if (hit.transform != null)
+                box.BoxPush(movement, blockingLayer);
+        }
     }
     
     private void FixedUpdate()
