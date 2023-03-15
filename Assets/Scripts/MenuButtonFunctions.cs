@@ -9,12 +9,13 @@ public class MenuButtonFunctions : MonoBehaviour
 
     public void StartGame()
     {
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene("level1");
     }
 
     public void Exit()
     {
-        Application.Quit();
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void AboutScreen()
