@@ -13,30 +13,30 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.gameObject.SetActive(false);
     }
 
-    //when escape key is pressed pause menu pops up/disappears
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (paused == true)
             {
-                Time.timeScale = 1.0f;
+                
                 pauseMenu.gameObject.SetActive(false);
+                UnityEngine.Cursor.visible = false;
                 paused = false;
             }
             else
             {
-                Time.timeScale = 0.0f;
+
                 pauseMenu.gameObject.SetActive(true);
+                UnityEngine.Cursor.visible = true;
                 paused = true;
             }
         }
     }
-
     public void Resume()
     {
-        Time.timeScale = 1.0f;
         pauseMenu.gameObject.SetActive(false);
+        UnityEngine.Cursor.visible = false;
         paused = false;
     }
 }

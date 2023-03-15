@@ -1,4 +1,9 @@
-//using System.Threading.Tasks.Dataflow;
+/// <summary>
+/// Pirmasis zaidejo judejimo skriptas(su papildymais "playerWormMove" judejimo skriptas)
+/// Papildoma funkcija(kuri jau yra ir kitame skripte) yra deziu stumimas jeigu kitas objektas yra deze kas patikrinama atsitrenkus i objekta
+/// Neaprasysiu sito rekomenduoju ziureti i "playerWormMove" informacijos sita reikes pasalinti turbut
+/// </summary>
+/// 
 using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     //bool isMoving;
     BoxCollider2D boxCollider;
 
+    //Pradzios darbai pasiemami objekto prie kurio prikabintas komponentai kad butu veliau lengviau
     void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();

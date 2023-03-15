@@ -1,3 +1,9 @@
+/// <summary>
+/// Visiskai nenaudojamas skriptas 
+/// turbut neveike ar kazkas nzn
+/// 
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
