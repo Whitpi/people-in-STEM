@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 /// Antrasis zaidejo judejimo skriptas(skirtas scenoje kirminas)
 /// Pradzioje skyresi tuo kad neturejo stumdymo mechanikos bet ji dabar ir cia yra
 /// Skirtumas nuo "PlayerMovement" yra knygos paemimo fiksavimas pagal tags daugiau viskas identiska
@@ -7,7 +7,9 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class playerWormMove : MonoBehaviour
 {
@@ -22,6 +24,9 @@ public class playerWormMove : MonoBehaviour
     public bool greenBook;
     public bool redBook;
 
+    private bool start = true; //Stebi ar pasiektas pradžios taškas
+    public Canvas infoScreen; //Galima prijungti canvas su informacija žaidėjui
+
 
     // Start is called before the first frame update
     //Pradzios darbai pasiemami objekto prie kurio prikabintas komponentai kad butu veliau lengviau
@@ -35,6 +40,12 @@ public class playerWormMove : MonoBehaviour
     // Tinkamas klausyti paspaudimu ar kitu pasikeitimu nesusijusiu su fizika
     void Update()
     {
+        //Kol pasiekiamas pradinis taškas vykdoma ėjimo funkcija
+        if (start) 
+        {
+            GameStart(ref start);
+        }
+        
         direction.x = Input.GetAxisRaw("Horizontal");
         direction.y = Input.GetAxisRaw("Vertical");
     }
@@ -90,5 +101,31 @@ public class playerWormMove : MonoBehaviour
             rb.velocity = Vector2.zero; //isjungiamas pagreitis kad nebutu nesamoniu (pastumiamas zaidejas judancio objekto igauna begalini pagreiti)
         }
 
+    }
+
+    //Funkcija lygiui prasidedant 
+    private void GameStart(ref bool start)
+    {
+        Vector3 startPosition = new Vector3(-16f, -1.45f, 0); //nurodo į kurį tašką eis pelytė prasidedant lygiui
+        transform.position = Vector3.MoveTowards(transform.position, startPosition, 0.03f); //Pėlytės ejimas (esmas pozicija, galinė poz, greitis)
+        //Kol nepasiekiama pozicija žaidimas starto būsenoje.
+        if (transform.position == startPosition)
+        {
+            //Jei yra canvas su informacija žaidėjui, žaidimas sustabdomas rodomas langas.
+            if (infoScreen != null)
+            {
+                infoScreen.gameObject.SetActive(true);
+                Time.timeScale = 0.0f;
+            }
+            start = false;
+        }
+
+    }
+
+    //Funkcija pardėti žaidimą išjungiant info langą
+    public void Resume()
+    {
+        Time.timeScale = 1.0f;
+        infoScreen.gameObject.SetActive(false);
     }
 }
