@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] Rigidbody2D rb;
     [SerializeField] float moveSpeed = 20;
+    public Animator animator;
 
     [SerializeField] LayerMask blockingLayer;
 
@@ -33,6 +34,9 @@ public class PlayerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         //rb.MovePosition(rb.position + movement * moveSpeed * Time.deltaTime);
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
 
     }
 
