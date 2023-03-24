@@ -55,6 +55,20 @@ public class playerWormMove : MonoBehaviour
         direction.x = Input.GetAxisRaw("Horizontal");
         direction.y = Input.GetAxisRaw("Vertical");
 
+        TikrintSprite(direction);
+
+        if (Input.GetKeyDown(pickupKey))
+        {
+            TakeBook();
+        }
+        if (Input.GetKeyDown(dropKey))
+        {
+            DropBook();
+        }
+    }
+
+    void TikrintSprite(Vector2 direction)
+    {
         if(direction.x == 1)
         {
             /// i desine
@@ -74,15 +88,6 @@ public class playerWormMove : MonoBehaviour
         {
             /// i apacia
             playerSprite.sprite = sprites[3];
-        }
-
-        if (Input.GetKeyDown(pickupKey))
-        {
-            TakeBook();
-        }
-        if (Input.GetKeyDown(dropKey))
-        {
-            DropBook();
         }
     }
 
@@ -120,9 +125,7 @@ public class playerWormMove : MonoBehaviour
 
     }
 
-    Book heldBook;
     bool once;
-
 
     public void TakeBook()
     {
@@ -131,31 +134,26 @@ public class playerWormMove : MonoBehaviour
         if (hit.transform != null)
         {
             GameObject bookToPickup = hit.collider.gameObject;
-            Debug.Log(bookToPickup.name);
-            BookSpawn bookSpawn = bookToPickup.GetComponent<BookSpawn>();
-            if (bookSpawn != null)
+            Item book = bookToPickup.GetComponent<Item>();
+            if (book != null)
             {
-                // Touching Item
-                bookSpawn.DestroySelf();
-                heldBook = bookSpawn.GetItem();
                 once = false;
+
+                BookSpawn bookSpawnScript = GetComponent<BookSpawn>();
+                
+                bookSpawnScript.SetBook(book.GetBook());
+                Destroy(bookToPickup);
             }
         }
-    }
-
-    void Awake()
-    {
-        BookSpawn.SpawnItemWorld(new Vector3(0, 0), new Book { bookType = Book.BookType.Green });
-        BookSpawn.SpawnItemWorld(new Vector3(2, 0), new Book { bookType = Book.BookType.Red });
     }
    
 
     public void DropBook()
     {
-        if (heldBook != null && !once)
+        BookSpawn bookSpawnScript = GetComponent<BookSpawn>();
+        if (bookSpawnScript.bookToSpawn != null && !once)
         {
-            Book duplicateItem = new Book { bookType = heldBook.bookType };
-            BookSpawn.DropItem(transform.position, duplicateItem);
+            Instantiate(bookSpawnScript.GetBookPrefab(), transform.position, Quaternion.identity);
             once = true;
         }
     }
