@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 /// Antrasis zaidejo judejimo skriptas(skirtas scenoje kirminas)
 /// Pradzioje skyresi tuo kad neturejo stumdymo mechanikos bet ji dabar ir cia yra
 /// Skirtumas nuo "PlayerMovement" yra knygos paemimo fiksavimas pagal tags daugiau viskas identiska
@@ -7,7 +7,9 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class playerWormMove : MonoBehaviour
 {
@@ -16,11 +18,19 @@ public class playerWormMove : MonoBehaviour
     Vector2 direction;
 
     BoxCollider2D boxCollider;
+    SpriteRenderer playerSprite;
     [SerializeField] LayerMask blockingLayer;
 
     [SerializeField] GameObject greenBookUI;
-    public bool greenBook;
-    public bool redBook;
+    [SerializeField] GameObject equipedBook;
+    [SerializeField] KeyCode pickupKey = KeyCode.F;
+    [SerializeField] KeyCode dropKey = KeyCode.G;
+    [SerializeField] LayerMask pickupLayer;
+
+    [SerializeField] Sprite[] sprites = new Sprite[4];
+
+    private bool start = true; //Stebi ar pasiektas pradžios taškas
+    public Canvas infoScreen; //Galima prijungti canvas su informacija žaidėjui
 
 
     // Start is called before the first frame update
@@ -29,35 +39,53 @@ public class playerWormMove : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+        playerSprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     // Tinkamas klausyti paspaudimu ar kitu pasikeitimu nesusijusiu su fizika
     void Update()
     {
+        //Kol pasiekiamas pradinis taškas vykdoma ėjimo funkcija
+        if (start) 
+        {
+            GameStart(ref start);
+        }
+        
         direction.x = Input.GetAxisRaw("Horizontal");
         direction.y = Input.GetAxisRaw("Vertical");
-    }
 
-    //Iskvieciamas kai objektas i kuri atsitrenke turi Coliider2D atributa kuriame nustatyta "isTrigger = true"
-    //Naudojamas patikrinti ar i ka atsitrenke yra knyga jei taip issaugome kad turime knyga ir paslepiame knyga i kuria atsitrenkeme
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        //tikriname ar atsitrenkeme i zalia knyga per tagus
-         if(other.gameObject.tag == "greenBook")
+        if(direction.x == 1)
         {
-            greenBook = true; //pazymime kad turime zalia knyga kode
-            other.gameObject.SetActive(false); //paslepiame knyga i kuria atsitrenkeme
-            greenBookUI.SetActive(true); // parodome desineje ikona kad turime knyga
+            /// i desine
+            playerSprite.sprite = sprites[0];
+        }
+        if(direction.x == -1)
+        {
+            /// i kaire
+            playerSprite.sprite = sprites[1];
+        }
+        if(direction.y == 1)
+        {
+            /// i virsu
+            playerSprite.sprite = sprites[2];
+        }
+        if(direction.y == -1)
+        {
+            /// i apacia
+            playerSprite.sprite = sprites[3];
         }
 
-        if(other.gameObject.tag == "redBook")
+        if (Input.GetKeyDown(pickupKey))
         {
-            redBook = true;
-            other.gameObject.SetActive(false);
+            TakeBook();
         }
-
+        if (Input.GetKeyDown(dropKey))
+        {
+            DropBook();
+        }
     }
+
 
     //Iskvieciamas kai objektas i kuri atsitrenke turi Coliider2D atributa (paprastai pasakius iskvieciamas kai atsirenkeme i ka nors)
     //Sioje situacijoje atliekame dezes stumima grid based style
@@ -90,5 +118,72 @@ public class playerWormMove : MonoBehaviour
             rb.velocity = Vector2.zero; //isjungiamas pagreitis kad nebutu nesamoniu (pastumiamas zaidejas judancio objekto igauna begalini pagreiti)
         }
 
+    }
+
+    Book heldBook;
+    bool once;
+
+
+    public void TakeBook()
+    {
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, 1, Vector2.zero, 0, pickupLayer);
+
+        if (hit.transform != null)
+        {
+            GameObject bookToPickup = hit.collider.gameObject;
+            Debug.Log(bookToPickup.name);
+            BookSpawn bookSpawn = bookToPickup.GetComponent<BookSpawn>();
+            if (bookSpawn != null)
+            {
+                // Touching Item
+                bookSpawn.DestroySelf();
+                heldBook = bookSpawn.GetItem();
+                once = false;
+            }
+        }
+    }
+
+    void Awake()
+    {
+        BookSpawn.SpawnItemWorld(new Vector3(0, 0), new Book { bookType = Book.BookType.Green });
+        BookSpawn.SpawnItemWorld(new Vector3(2, 0), new Book { bookType = Book.BookType.Red });
+    }
+   
+
+    public void DropBook()
+    {
+        if (heldBook != null && !once)
+        {
+            Book duplicateItem = new Book { bookType = heldBook.bookType };
+            BookSpawn.DropItem(transform.position, duplicateItem);
+            once = true;
+        }
+    }
+
+
+    //Funkcija lygiui prasidedant 
+    private void GameStart(ref bool start)
+    {
+        Vector3 startPosition = new Vector3(-16f, -1.45f, 0); //nurodo į kurį tašką eis pelytė prasidedant lygiui
+        transform.position = Vector3.MoveTowards(transform.position, startPosition, 0.03f); //Pėlytės ejimas (esmas pozicija, galinė poz, greitis)
+        //Kol nepasiekiama pozicija žaidimas starto būsenoje.
+        if (transform.position == startPosition)
+        {
+            //Jei yra canvas su informacija žaidėjui, žaidimas sustabdomas rodomas langas.
+            if (infoScreen != null)
+            {
+                infoScreen.gameObject.SetActive(true);
+                Time.timeScale = 0.0f;
+            }
+            start = false;
+        }
+
+    }
+
+    //Funkcija pardėti žaidimą išjungiant info langą
+    public void Resume()
+    {
+        Time.timeScale = 1.0f;
+        infoScreen.gameObject.SetActive(false);
     }
 }

@@ -57,18 +57,18 @@ public class EnemyMovement : MonoBehaviour
         }
 
         //Funkcionalumas atsitrenkus i kirmina kol kas jei neturi zaidejas knygos(zalios arba raudonos) zaidejas sunaikinamas
-        if (other.gameObject.CompareTag("Player") && !isCurled)
-        {
-            playerWormMove script = other.gameObject.GetComponent<playerWormMove>();
-            if (!script.greenBook && !script.redBook)
-            {
-                Destroy(other.gameObject);
-            }
-            else if (script.greenBook)
-            {
-                //Debug.Log("GreenDay");
-            }
-        }
+        // if (other.gameObject.CompareTag("Player") && !isCurled)
+        // {
+        //     playerWormMove script = other.gameObject.GetComponent<playerWormMove>();
+        //     if (!script.greenBook && !script.redBook)
+        //     {
+        //         Destroy(other.gameObject);
+        //     }
+        //     else if (script.greenBook)
+        //     {
+        //         //Debug.Log("GreenDay");
+        //     }
+        // }
 
     }
 

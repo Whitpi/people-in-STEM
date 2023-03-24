@@ -15,7 +15,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - Pickables
   - 
   - 
   - 
@@ -52,4 +52,10 @@ TagManager:
     locked: 0
   - name: Layer 3
     uniqueID: 1738540199
+    locked: 0
+  - name: Mouse
+    uniqueID: 2004681683
+    locked: 0
+  - name: Screens
+    uniqueID: 730442917
     locked: 0
