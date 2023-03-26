@@ -3,28 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[Serializable]
-public class Book
+[CreateAssetMenu(menuName = "ScriptableBook", fileName = "New Scriptable Book")]
+public class Book : ScriptableObject
 {
-    public enum BookType
+    public enum BookTypes
     {
         Red,
         Blue,
         Green,
         Yellow,
     }
+    
+    [SerializeField]
+    string name;
 
-    public BookType bookType;
+    [SerializeField]
+    Sprite gameSprite;
 
-    public Sprite GetSprite()
-    {
-        switch (bookType)
-        {
-            default:
-            case BookType.Red: return BookAssets.Instance.redSprite;
-            case BookType.Blue: return BookAssets.Instance.blueSprite;
-            case BookType.Green: return BookAssets.Instance.greenSprite;
-            case BookType.Yellow: return BookAssets.Instance.yellowSprite;
-        }
-    }
+    [SerializeField]
+    Sprite uiSprite;
+
+    [SerializeField]
+    BookTypes bookType;
+
+    public string Name => name;
+    public Sprite GameSprite => gameSprite;
+    public Sprite UiSprite => uiSprite;
+    public BookTypes BookType => bookType;
+
 }

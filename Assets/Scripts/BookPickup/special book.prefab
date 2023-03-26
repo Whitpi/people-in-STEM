@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7726966560890794011}
   - component: {fileID: 7067608086396178621}
-  - component: {fileID: 5854223568454972258}
+  - component: {fileID: 4635429417621613911}
   - component: {fileID: 285150267638585412}
   m_Layer: 7
   m_Name: special book
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2857725990112374233}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.3887005, y: 1.0285196, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3.2968554, y: 3.4267907, z: 1.178016}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5854223568454972258
+--- !u!114 &4635429417621613911
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,9 +95,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2857725990112374233}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c9c5f8faa6243f4a9866f455ff3547c, type: 3}
+  m_Script: {fileID: 11500000, guid: ccc86c21de37188409a21b50e65794f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  book: {fileID: 11400000, guid: fd6b7d0a54be22b459042e53e99a519a, type: 2}
+  spriteRenderer: {fileID: 7067608086396178621}
 --- !u!61 &285150267638585412
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -115,7 +117,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.5, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
