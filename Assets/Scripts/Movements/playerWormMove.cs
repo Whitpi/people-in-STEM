@@ -145,8 +145,8 @@ public class playerWormMove : MonoBehaviour
 
     void Awake()
     {
-        BookSpawn.SpawnItemWorld(new Vector3(0, 0), new Book { bookType = Book.BookType.Green });
-        BookSpawn.SpawnItemWorld(new Vector3(2, 0), new Book { bookType = Book.BookType.Red });
+        BookSpawn.SpawnItemWorld(new Vector3(-10, 1), new Book { bookType = Book.BookType.Green });
+        //BookSpawn.SpawnItemWorld(new Vector3(2, 0), new Book { bookType = Book.BookType.Red });
     }
    
 
@@ -156,8 +156,14 @@ public class playerWormMove : MonoBehaviour
         {
             Book duplicateItem = new Book { bookType = heldBook.bookType };
             BookSpawn.DropItem(transform.position, duplicateItem);
+            heldBook = null;
             once = true;
         }
+    }
+
+    public Book GetHeldBook()
+    {
+        return heldBook;
     }
 
 
