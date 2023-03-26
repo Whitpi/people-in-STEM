@@ -9,7 +9,7 @@ public class MenuButtonFunctions : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("level1");
+        SceneManager.LoadScene("lvl1.alt");
     }
 
     public void Exit()
