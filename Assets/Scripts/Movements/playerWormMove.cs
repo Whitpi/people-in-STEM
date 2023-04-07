@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
 public class playerWormMove : MonoBehaviour
@@ -31,7 +32,7 @@ public class playerWormMove : MonoBehaviour
 
     private bool start = true; //Stebi ar pasiektas pradžios taškas
     public Canvas infoScreen; //Galima prijungti canvas su informacija žaidėjui
-
+    Scene currentScene;
 
     // Start is called before the first frame update
     //Pradzios darbai pasiemami objekto prie kurio prikabintas komponentai kad butu veliau lengviau
@@ -40,6 +41,7 @@ public class playerWormMove : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         playerSprite = GetComponent<SpriteRenderer>();
+        currentScene = SceneManager.GetActiveScene();
     }
 
     // Update is called once per frame
@@ -57,7 +59,13 @@ public class playerWormMove : MonoBehaviour
 
         TikrintSprite(direction);
 
-       
+        //Jei paspaudžiamas h iškviečia instrukcijas
+        if (Input.GetKeyDown(KeyCode.H) && !infoScreen.isActiveAndEnabled)
+        {
+            infoScreen.gameObject.SetActive(true);
+            Time.timeScale = 0.0f;
+        }
+
     }
 
     void TikrintSprite(Vector2 direction)
@@ -184,7 +192,7 @@ public class playerWormMove : MonoBehaviour
         if (transform.position == startPosition)
         {
             //Jei yra canvas su informacija žaidėjui, žaidimas sustabdomas rodomas langas.
-            if (infoScreen != null)
+            if (currentScene.name == "lvl1")
             {
                 infoScreen.gameObject.SetActive(true);
                 Time.timeScale = 0.0f;

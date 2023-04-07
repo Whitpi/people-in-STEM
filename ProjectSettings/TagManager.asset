@@ -56,6 +56,9 @@ TagManager:
   - name: Mouse
     uniqueID: 2004681683
     locked: 0
-  - name: Screens
+  - name: UI
     uniqueID: 730442917
+    locked: 0
+  - name: InfoScreen
+    uniqueID: 3159887863
     locked: 0
