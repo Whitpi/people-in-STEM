@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -9,10 +10,12 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenu; // canvas su pauzės meniu
     bool paused = false; // stebi ar dabartinė situacija sustabdyta ar ne
+    Scene currentScene;
 
     void Start()
     {
         pauseMenu.gameObject.SetActive(false);
+        currentScene = SceneManager.GetActiveScene();
     }
 
     //Paspaudus Esc įjungia/išjungia pauzės meniu
@@ -40,5 +43,16 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1.0f;
         pauseMenu.gameObject.SetActive(false);
         paused = false;
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Reset()
+    {
+        SceneManager.LoadScene(currentScene.name);
+        Time.timeScale = 1.0f;
     }
 }
