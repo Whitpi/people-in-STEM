@@ -24,4 +24,8 @@ public class BookSpawn : MonoBehaviour
         return bookToSpawn;
     }
     
+    public void RemoveBook()
+    {
+        bookToSpawn = null;
+    }
 }

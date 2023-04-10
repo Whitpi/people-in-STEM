@@ -1,4 +1,5 @@
-﻿/// <summary>
+﻿using System.Net.Mime;
+/// <summary>
 /// Antrasis zaidejo judejimo skriptas(skirtas scenoje kirminas)
 /// Pradzioje skyresi tuo kad neturejo stumdymo mechanikos bet ji dabar ir cia yra
 /// Skirtumas nuo "PlayerMovement" yra knygos paemimo fiksavimas pagal tags daugiau viskas identiska
@@ -11,6 +12,7 @@ using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
+using UnityEngine.UI;
 
 public class playerWormMove : MonoBehaviour
 {
@@ -22,7 +24,7 @@ public class playerWormMove : MonoBehaviour
     SpriteRenderer playerSprite;
     [SerializeField] LayerMask blockingLayer;
 
-    [SerializeField] GameObject greenBookUI;
+    [SerializeField] GameObject bookIconUI;
     [SerializeField] GameObject equipedBook;
     [SerializeField] KeyCode pickupKey = KeyCode.F;
     [SerializeField] KeyCode dropKey = KeyCode.G;
@@ -49,11 +51,11 @@ public class playerWormMove : MonoBehaviour
     void Update()
     {
         //Kol pasiekiamas pradinis taškas vykdoma ėjimo funkcija
-        if (start) 
+        if (start)
         {
             GameStart(ref start);
         }
-        
+
         direction.x = Input.GetAxisRaw("Horizontal");
         direction.y = Input.GetAxisRaw("Vertical");
 
@@ -70,22 +72,22 @@ public class playerWormMove : MonoBehaviour
 
     void TikrintSprite(Vector2 direction)
     {
-        if(direction.x == 1)
+        if (direction.x == 1)
         {
             /// i desine
             playerSprite.sprite = sprites[0];
         }
-        if(direction.x == -1)
+        if (direction.x == -1)
         {
             /// i kaire
             playerSprite.sprite = sprites[1];
         }
-        if(direction.y == 1)
+        if (direction.y == 1)
         {
             /// i virsu
             playerSprite.sprite = sprites[2];
         }
-        if(direction.y == -1)
+        if (direction.y == -1)
         {
             /// i apacia
             playerSprite.sprite = sprites[3];
@@ -115,8 +117,8 @@ public class playerWormMove : MonoBehaviour
             box.BoxPush(direction, blockingLayer);
         }
     }
-    
-    
+
+
     // FixedUpdate yra naudojamas fizikai zaidime yra iskvieciamas pastoviai kol zaidimas veikia 
     //Judejimas per komponenta Rigidbody2D blokuojamas istrizas judejimas
     private void FixedUpdate()
@@ -135,7 +137,7 @@ public class playerWormMove : MonoBehaviour
 
     }
 
-    
+
     bool once;
 
 
@@ -145,20 +147,36 @@ public class playerWormMove : MonoBehaviour
 
         BookSpawn bookSpawnScript = GetComponent<BookSpawn>();
 
+
         if (hit.transform != null)
         {
-            if(bookSpawnScript.GetBookInfo() != null)
+            
+            Image bookIconImage = bookIconUI.GetComponent<Image>();
+
+            if (bookSpawnScript.GetBookInfo() != null)
             {
                 DropBook();
+                //change book icon
+                if (bookIconUI != null)
+                    bookIconImage.sprite = bookSpawnScript.GetBookInfo().GameSprite;
+
             }
-            
+
             GameObject bookToPickup = hit.collider.gameObject;
             Item book = bookToPickup.GetComponent<Item>();
             if (book != null)
             {
                 once = false;
 
+
                 bookSpawnScript.SetBook(book.GetBook());
+
+                if (bookIconUI != null)
+                {
+                    bookIconImage.sprite = bookSpawnScript.GetBookInfo().GameSprite;
+                    bookIconUI.SetActive(true);
+                }
+
                 Destroy(bookToPickup);
             }
         }
@@ -170,6 +188,10 @@ public class playerWormMove : MonoBehaviour
         BookSpawn bookSpawnScript = GetComponent<BookSpawn>();
         if (bookSpawnScript.bookToSpawn != null && !once)
         {
+            
+            if (bookIconUI != null)
+                bookIconUI.SetActive(false);
+
             Instantiate(bookSpawnScript.GetBookPrefab(), transform.position, Quaternion.identity);
             once = true;
         }
@@ -180,6 +202,14 @@ public class playerWormMove : MonoBehaviour
         BookSpawn bookSpawnScript = GetComponent<BookSpawn>();
         if (bookSpawnScript.bookToSpawn != null)
             return bookSpawnScript.GetBookInfo();
+        return null;
+    }
+
+    public GameObject GetHeldBookIcon()
+    {
+        //BookSpawn bookSpawnScript = GetComponent<BookSpawn>();
+        if (bookIconUI != null)
+            return bookIconUI;
         return null;
     }
 
