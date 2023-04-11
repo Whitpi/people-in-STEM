@@ -2598,8 +2598,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856285117}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2479, y: -0.4248, z: -10}
-  m_LocalScale: {x: 3.762676, y: 0.9312163, z: 1}
+  m_LocalPosition: {x: -4.3962, y: -0.3435, z: -10}
+  m_LocalScale: {x: 3.333039, y: 0.92460465, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -4722,8 +4722,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1684534684}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0818, y: -1.9119, z: 0}
-  m_LocalScale: {x: 3.3172364, y: 2.6504483, z: 1}
+  m_LocalPosition: {x: -4.2492, y: -1.8201, z: 0}
+  m_LocalScale: {x: 2.9384615, y: 2.6316302, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2133308430}
@@ -5904,7 +5904,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2046547235}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.92, y: -1.4, z: 0}
+  m_LocalPosition: {x: -24.88, y: -1.45, z: 0}
   m_LocalScale: {x: 0.29620114, y: 0.26529837, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5927,7 +5927,7 @@ MonoBehaviour:
   blockingLayer:
     serializedVersion: 2
     m_Bits: 4194304
-  greenBookUI: {fileID: 0}
+  bookIconUI: {fileID: 0}
   equipedBook: {fileID: 0}
   pickupKey: 102
   dropKey: 103

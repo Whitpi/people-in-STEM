@@ -35,6 +35,7 @@ public class playerWormMove : MonoBehaviour
     private bool start = true; //Stebi ar pasiektas pradžios taškas
     public Canvas infoScreen; //Galima prijungti canvas su informacija žaidėjui
     Scene currentScene;
+    Vector3 startPosition;
 
     // Start is called before the first frame update
     //Pradzios darbai pasiemami objekto prie kurio prikabintas komponentai kad butu veliau lengviau
@@ -44,6 +45,7 @@ public class playerWormMove : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         playerSprite = GetComponent<SpriteRenderer>();
         currentScene = SceneManager.GetActiveScene();
+        startPosition = new Vector3(transform.position.x + 8, transform.position.y, 0);
     }
 
     // Update is called once per frame
@@ -53,7 +55,7 @@ public class playerWormMove : MonoBehaviour
         //Kol pasiekiamas pradinis taškas vykdoma ėjimo funkcija
         if (start)
         {
-            GameStart(ref start);
+            GameStart(ref start, startPosition);
         }
 
         direction.x = Input.GetAxisRaw("Horizontal");
@@ -192,6 +194,8 @@ public class playerWormMove : MonoBehaviour
             if (bookIconUI != null)
                 bookIconUI.SetActive(false);
 
+            bookSpawnScript.RemoveBook();
+
             Instantiate(bookSpawnScript.GetBookPrefab(), transform.position, Quaternion.identity);
             once = true;
         }
@@ -214,10 +218,10 @@ public class playerWormMove : MonoBehaviour
     }
 
     //Funkcija lygiui prasidedant 
-    private void GameStart(ref bool start)
+    private void GameStart(ref bool start, Vector3 statPosition)
     {
-        Vector3 startPosition = new Vector3(-16f, -1.45f, 0); //nurodo į kurį tašką eis pelytė prasidedant lygiui
-        transform.position = Vector3.MoveTowards(transform.position, startPosition, 0.03f); //Pėlytės ejimas (esmas pozicija, galinė poz, greitis)
+        playerSprite.sprite = sprites[0];
+        transform.position = Vector3.MoveTowards(transform.position, startPosition, 0.1f); //Pėlytės ejimas (esmas pozicija, galinė poz, greitis)
         //Kol nepasiekiama pozicija žaidimas starto būsenoje.
         if (transform.position == startPosition)
         {
