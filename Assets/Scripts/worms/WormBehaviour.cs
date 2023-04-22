@@ -14,10 +14,11 @@ public class WormBehaviour : MonoBehaviour
     BookSpawn bookSpawnScript;
 
     Book heldBook = null;
+    Animator wormAnimator;
 
     void Start()
     {
-
+        wormAnimator = GetComponent<Animator>();
     }
 
     //Susidūrus objektams tikrina ar kitas obj turi vaikščiojimo scriptą ir ar yra užregistruota paimta knyga. Jei taip leidžia pasukti kirminą
@@ -48,7 +49,7 @@ public class WormBehaviour : MonoBehaviour
     {
         if (collided && once && rotate && Input.GetKeyDown(KeyCode.Space))
         {
-            WormRotate();
+            wormAnimator.SetTrigger("greenBookAction");
 
             if (playerBookIcon != null)
                 playerBookIcon.SetActive(false);
