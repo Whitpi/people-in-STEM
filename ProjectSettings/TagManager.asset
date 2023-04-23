@@ -63,3 +63,6 @@ TagManager:
   - name: InfoScreen
     uniqueID: 3159887863
     locked: 0
+  - name: PauseMenu
+    uniqueID: 916468239
+    locked: 0
