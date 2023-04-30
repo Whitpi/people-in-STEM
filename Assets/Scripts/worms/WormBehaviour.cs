@@ -11,6 +11,7 @@ public class WormBehaviour : MonoBehaviour
     private bool once = true;
 
     private GameObject playerBookIcon;
+    public GameObject worm;
     BookSpawn bookSpawnScript;
 
     Book heldBook = null;
@@ -49,14 +50,29 @@ public class WormBehaviour : MonoBehaviour
     {
         if (collided && once && rotate && Input.GetKeyDown(KeyCode.Space))
         {
-            wormAnimator.SetTrigger("greenBookAction");
+            if (worm.name == "green worm")
+            {
+                wormAnimator.SetTrigger("greenBookAction");
 
-            if (playerBookIcon != null)
-                playerBookIcon.SetActive(false);
-            if (bookSpawnScript != null)
-                bookSpawnScript.RemoveBook();
-                
-            once = false;
+                if (playerBookIcon != null)
+                    playerBookIcon.SetActive(false);
+                if (bookSpawnScript != null)
+                    bookSpawnScript.RemoveBook();
+
+                once = false;
+            }
+
+            if (worm.name == "yellow worm")
+            {
+                wormAnimator.SetTrigger("greenBook_yellowWorm");
+
+                if (playerBookIcon != null)
+                    playerBookIcon.SetActive(false);
+                if (bookSpawnScript != null)
+                    bookSpawnScript.RemoveBook();
+
+                once = false;
+            }
         }
     }
 
