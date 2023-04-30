@@ -749,7 +749,7 @@ PrefabInstance:
     - target: {fileID: 2172524513086816489, guid: 84efd2dd51334044db82196f95f77bb8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 991673554}
     - target: {fileID: 2172524513086816489, guid: 84efd2dd51334044db82196f95f77bb8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Reset
@@ -853,7 +853,7 @@ PrefabInstance:
     - target: {fileID: 2172524513668013160, guid: 84efd2dd51334044db82196f95f77bb8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 991673554}
     - target: {fileID: 2172524513668013160, guid: 84efd2dd51334044db82196f95f77bb8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: BackToMainMenu
@@ -861,7 +861,7 @@ PrefabInstance:
     - target: {fileID: 2172524514012926922, guid: 84efd2dd51334044db82196f95f77bb8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 991673554}
     - target: {fileID: 2172524514012926922, guid: 84efd2dd51334044db82196f95f77bb8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Resume
@@ -1570,6 +1570,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7492306512935401862, guid: f57b3d2c625c059498ea14db1e827083, type: 3}
   m_PrefabInstance: {fileID: 2076028442}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &991673554 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7492306512935401863, guid: f57b3d2c625c059498ea14db1e827083, type: 3}
+  m_PrefabInstance: {fileID: 2076028442}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dffdbc94b6821ac449dd212afda9f875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1209240624
 GameObject:
   m_ObjectHideFlags: 0
@@ -4536,5 +4547,9 @@ PrefabInstance:
       propertyPath: obj
       value: 
       objectReference: {fileID: 497662886}
+    - target: {fileID: 2828921372297794943, guid: a623b34a89e852e44a1ef00b2e42216d, type: 3}
+      propertyPath: sceneName
+      value: lvl1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a623b34a89e852e44a1ef00b2e42216d, type: 3}
