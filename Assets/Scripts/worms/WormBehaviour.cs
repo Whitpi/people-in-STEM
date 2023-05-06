@@ -6,12 +6,11 @@ using UnityEngine.UIElements;
 
 public class WormBehaviour : MonoBehaviour
 {
-    private bool rotate = false; //Prasidedant lygiui nepasukamas kirminas
+    private bool move = false; //Prasidedant lygiui nepasukamas kirminas
     private bool collided = false; //tikrina ar dabar susidūrę
     private bool once = true;
 
     private GameObject playerBookIcon;
-    public GameObject worm;
     BookSpawn bookSpawnScript;
 
     Book heldBook = null;
@@ -34,9 +33,9 @@ public class WormBehaviour : MonoBehaviour
             bookSpawnScript = foundPWM.GetComponent<BookSpawn>();
 
             if (heldBook != null)
-                rotate = true;
+                move = true;
             else
-                rotate = false;
+                move = false;
         }
     }
 
@@ -48,39 +47,27 @@ public class WormBehaviour : MonoBehaviour
     //Jei objektai susidurę, susidūrimo metu rasta knyga ir paspaudžiamas space, pasuką kirminą.
     private void Update()
     {
-        if (collided && once && rotate && Input.GetKeyDown(KeyCode.Space))
+        if (collided && once && move && Input.GetKeyDown(KeyCode.Space))
         {
-            if (worm.name == "green worm")
+           switch (heldBook.BookType)
             {
-                wormAnimator.SetTrigger("greenBookAction");
-
-                if (playerBookIcon != null)
-                    playerBookIcon.SetActive(false);
-                if (bookSpawnScript != null)
-                    bookSpawnScript.RemoveBook();
-
-                once = false;
+                case Book.BookTypes.Blue:
+                    wormAnimator.SetTrigger("worm_tail_left");
+                    if (playerBookIcon != null)
+                        playerBookIcon.SetActive(false);
+                    if (bookSpawnScript != null)
+                        bookSpawnScript.RemoveBook();
+                    break;
+                case Book.BookTypes.Green:
+                    wormAnimator.SetTrigger("worm_tail_right");
+                    if (playerBookIcon != null)
+                        playerBookIcon.SetActive(false);
+                    if (bookSpawnScript != null)
+                        bookSpawnScript.RemoveBook();
+                    break;
             }
 
-            if (worm.name == "yellow worm")
-            {
-                wormAnimator.SetTrigger("greenBook_yellowWorm");
-
-                if (playerBookIcon != null)
-                    playerBookIcon.SetActive(false);
-                if (bookSpawnScript != null)
-                    bookSpawnScript.RemoveBook();
-
-                once = false;
-            }
         }
-    }
-
-    public void WormRotate()
-    {
-        Quaternion rot = Quaternion.Euler(0, 0, 90);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 90);
-        transform.position = transform.position + Vector3.down * 4;
     }
 
 }
