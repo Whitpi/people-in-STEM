@@ -58,8 +58,17 @@ public class WormBehaviour : MonoBehaviour
                     if (bookSpawnScript != null)
                         bookSpawnScript.RemoveBook();
                     break;
+
                 case Book.BookTypes.Green:
                     wormAnimator.SetTrigger("worm_tail_right");
+                    if (playerBookIcon != null)
+                        playerBookIcon.SetActive(false);
+                    if (bookSpawnScript != null)
+                        bookSpawnScript.RemoveBook();
+                    break;
+
+                case Book.BookTypes.Yellow:
+                    wormAnimator.SetTrigger("worm_tail_up");
                     if (playerBookIcon != null)
                         playerBookIcon.SetActive(false);
                     if (bookSpawnScript != null)
