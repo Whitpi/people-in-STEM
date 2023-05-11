@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour
     bool paused = false; // stebi ar dabartinė situacija sustabdyta ar ne
     Scene currentScene;
 
+    [SerializeField] private AudioSource selectoundeffect;
     void Start()
     {
         pauseMenu.gameObject.SetActive(false);
@@ -40,19 +41,24 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+
         Time.timeScale = 1.0f;
         pauseMenu.gameObject.SetActive(false);
         paused = false;
+        selectoundeffect.Play();
     }
 
     public void BackToMainMenu()
     {
+
         SceneManager.LoadScene("MainMenu");
+        selectoundeffect.Play();
     }
 
     public void Reset()
     {
         SceneManager.LoadScene(currentScene.name);
         Time.timeScale = 1.0f;
+        selectoundeffect.Play();
     }
 }

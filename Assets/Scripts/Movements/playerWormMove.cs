@@ -37,6 +37,12 @@ public class playerWormMove : MonoBehaviour
     Scene currentScene;
     Vector3 startPosition;
 
+
+    [SerializeField] private AudioSource walkingsoundeffect;
+    [SerializeField] private AudioSource pickupsoundeffect;
+    [SerializeField] private AudioSource dropsoundeffect;
+    [SerializeField] private AudioSource clicksoundeffect;
+
     // Start is called before the first frame update
     //Pradzios darbai pasiemami objekto prie kurio prikabintas komponentai kad butu veliau lengviau
     void Start()
@@ -61,6 +67,7 @@ public class playerWormMove : MonoBehaviour
         direction.x = Input.GetAxisRaw("Horizontal");
         direction.y = Input.GetAxisRaw("Vertical");
 
+
         TikrintSprite(direction);
 
         //Jei paspaudžiamas h iškviečia instrukcijas
@@ -70,6 +77,8 @@ public class playerWormMove : MonoBehaviour
             Time.timeScale = 0.0f;
         }
 
+
+
     }
 
     void TikrintSprite(Vector2 direction)
@@ -78,11 +87,14 @@ public class playerWormMove : MonoBehaviour
         {
             /// i desine
             playerSprite.sprite = sprites[0];
+
         }
         if (direction.x == -1)
         {
             /// i kaire
             playerSprite.sprite = sprites[1];
+
+
         }
         if (direction.y == 1)
         {
@@ -135,7 +147,10 @@ public class playerWormMove : MonoBehaviour
             //Time.deltaTime - laikrodis butinas judejimui kad nebutu nesamoniu 
             rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);//Naudojamas Unity metodas "MovePosition"  judinti zaidejui
             rb.velocity = Vector2.zero; //isjungiamas pagreitis kad nebutu nesamoniu (pastumiamas zaidejas judancio objekto igauna begalini pagreiti)
+            if (!walkingsoundeffect.isPlaying)
+                walkingsoundeffect.Play();
         }
+        else walkingsoundeffect.Stop();
 
     }
 
@@ -152,7 +167,7 @@ public class playerWormMove : MonoBehaviour
 
         if (hit.transform != null)
         {
-            
+            pickupsoundeffect.Play();
             Image bookIconImage = bookIconUI.GetComponent<Image>();
 
             if (bookSpawnScript.GetBookInfo() != null)
@@ -190,6 +205,7 @@ public class playerWormMove : MonoBehaviour
         BookSpawn bookSpawnScript = GetComponent<BookSpawn>();
         if (bookSpawnScript.bookToSpawn != null && !once)
         {
+            dropsoundeffect.Play();
             
             if (bookIconUI != null)
                 bookIconUI.SetActive(false);
@@ -239,6 +255,7 @@ public class playerWormMove : MonoBehaviour
     //Funkcija pardėti žaidimą išjungiant info langą
     public void Resume()
     {
+        clicksoundeffect.Play();
         Time.timeScale = 1.0f;
         infoScreen.gameObject.SetActive(false);
     }

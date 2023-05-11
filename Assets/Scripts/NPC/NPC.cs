@@ -18,6 +18,8 @@ public class NPC : MonoBehaviour
     public float wordspeed;
     public bool playerIsClose;
     // Update is called once per frame
+    [SerializeField] private AudioSource continuesoundeffect;
+    [SerializeField] private AudioSource typingsoundeffect;
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.F)&& playerIsClose)
@@ -51,14 +53,16 @@ public class NPC : MonoBehaviour
     {
         foreach(char letter in dialogas[index].ToCharArray())
         {
+
             Dialogas.text += letter;
             yield return new WaitForSeconds(wordspeed);
+            typingsoundeffect.Play();
         }
 
     }
     public void NextLine()
     {
-
+        continuesoundeffect.Play();
         Continue.SetActive(false);
 
         if(index < dialogas.Length - 1)

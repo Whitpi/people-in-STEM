@@ -4344,6 +4344,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2429579786240614772, guid: f57b3d2c625c059498ea14db1e827083, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7492306512935401857, guid: f57b3d2c625c059498ea14db1e827083, type: 3}
       propertyPath: m_Camera
       value: 
@@ -4440,5 +4444,14 @@ PrefabInstance:
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 451485079}
+    - target: {fileID: 7492306512935401863, guid: f57b3d2c625c059498ea14db1e827083, type: 3}
+      propertyPath: selectoundeffect
+      value: 
+      objectReference: {fileID: 7492306513041723971}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f57b3d2c625c059498ea14db1e827083, type: 3}
+--- !u!82 &7492306513041723971 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: -2429579786240614772, guid: f57b3d2c625c059498ea14db1e827083, type: 3}
+  m_PrefabInstance: {fileID: 7492306513041723970}
+  m_PrefabAsset: {fileID: 0}

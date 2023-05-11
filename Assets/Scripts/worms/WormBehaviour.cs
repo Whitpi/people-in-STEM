@@ -9,6 +9,7 @@ public class WormBehaviour : MonoBehaviour
     private bool move = false; //Prasidedant lygiui nepasukamas kirminas
     private bool collided = false; //tikrina ar dabar susidūrę
     private bool once = true;
+    [SerializeField] private AudioSource movesoundeffect;
 
     private GameObject playerBookIcon;
     BookSpawn bookSpawnScript;
@@ -49,6 +50,7 @@ public class WormBehaviour : MonoBehaviour
     {
         if (collided && once && move && Input.GetKeyDown(KeyCode.Space))
         {
+            movesoundeffect.Play();
            switch (heldBook.BookType)
             {
                 case Book.BookTypes.Blue:
