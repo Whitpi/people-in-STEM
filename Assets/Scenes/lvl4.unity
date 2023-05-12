@@ -224,7 +224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2828921372297794935, guid: a623b34a89e852e44a1ef00b2e42216d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -26.6839
+      value: -26.9
       objectReference: {fileID: 0}
     - target: {fileID: 2828921372297794935, guid: a623b34a89e852e44a1ef00b2e42216d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -292,7 +292,7 @@ PrefabInstance:
       objectReference: {fileID: 524448964}
     - target: {fileID: 2828921372297794943, guid: a623b34a89e852e44a1ef00b2e42216d, type: 3}
       propertyPath: sceneName
-      value: finish
+      value: lvl5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a623b34a89e852e44a1ef00b2e42216d, type: 3}
@@ -2075,7 +2075,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -53.966003, y: -104.94397}
+  m_AnchoredPosition: {x: -53.966003, y: -104.943985}
   m_SizeDelta: {x: -481.794, y: -253.946}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1036098658
