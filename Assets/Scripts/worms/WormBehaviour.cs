@@ -70,7 +70,7 @@ public class WormBehaviour : MonoBehaviour
                     break;
 
                 case Book.BookTypes.Yellow:
-                    wormAnimator.SetTrigger("worm_tail_up");
+                    wormAnimator.SetTrigger("worm_move_up");
                     if (playerBookIcon != null)
                         playerBookIcon.SetActive(false);
                     if (bookSpawnScript != null)
