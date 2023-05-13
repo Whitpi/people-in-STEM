@@ -965,11 +965,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7492306511662997718, guid: f57b3d2c625c059498ea14db1e827083, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -30.275
+      value: -30.275024
       objectReference: {fileID: 0}
     - target: {fileID: 7492306511662997718, guid: f57b3d2c625c059498ea14db1e827083, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -36.341
+      value: -36.341003
       objectReference: {fileID: 0}
     - target: {fileID: 7492306512906217740, guid: f57b3d2c625c059498ea14db1e827083, type: 3}
       propertyPath: m_text
@@ -1286,12 +1286,12 @@ MonoBehaviour:
   DialoguePanel: {fileID: 1036098656}
   Dialogas: {fileID: 857992981}
   dialogas:
-  - "Ar mane akys apgauna ar prie\u0161 mane stovi gyvas peliukas?!"
-  - "Na, gyvasis keliautojau leisk man duoti tau patarim\u0105."
-  - "Kartais vis\u0173 knyg\u0173 tau neprireiks. Atkreipk d\u0117mes\u012F \u012F
-    spalvas!"
-  - "Taip pat, instrukcij\u0173 ra\u0161tas tau gali suteikti nauj\u0173 \u017Eini\u0173!"
-  - "S\u0117kmes kelion\u0117je!"
+  - Do my eyes deceive me, or is that a live mouse in front of me?
+  - Let me give you some advice, my living friend.
+  - Sometimes you won't need every book, so be sure to pay attention at the colors!
+  - Also, check the instructions from time to time, as you might find some useful
+    information!
+  - Good luck on your journey my friend!
   Continue: {fileID: 1087916295}
   wordspeed: 0.02
   playerIsClose: 0

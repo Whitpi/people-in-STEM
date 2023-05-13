@@ -436,15 +436,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-    eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-    in culpa qui officia deserunt mollit anim id est laborum.
+  m_text: "Unexpectedly, a little mouse finds himself in a deserted library. According
+    to legend, only the most cunning and wise individuals who can solve the challenging
+    puzzles and advance to the highest level will find the most delicious cheese
+    in the world. Your objective is to assist the little traveler in solving the
+    puzzles and receiving the reward. This game was developed by the KTU university's
+    IFZ 1/2 student team \"people in STEM\". Team members:\nLina Kelp\u0161ait\u0117,
+    Eduardas Lapinskas, Roberta Paulauskait\u0117, Gabija Eicheltait\u0117."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b19fded34a3477748a6715bfb96e6f4c, type: 2}
-  m_sharedMaterial: {fileID: 6270098907002531322, guid: b19fded34a3477748a6715bfb96e6f4c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ed20a9ab28bd6964ab8a6f7482e14846, type: 2}
+  m_sharedMaterial: {fileID: 8854926829754024099, guid: ed20a9ab28bd6964ab8a6f7482e14846, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -468,8 +469,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 34
+  m_fontSizeBase: 34
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
