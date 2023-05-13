@@ -118,20 +118,6 @@ public class playerWormMove : MonoBehaviour
     }
 
 
-    //Iskvieciamas kai objektas i kuri atsitrenke turi Coliider2D atributa (paprastai pasakius iskvieciamas kai atsirenkeme i ka nors)
-    //Sioje situacijoje atliekame dezes stumima grid based style
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        BoxConundrum box = other.transform.GetComponent<BoxConundrum>(); // gaunama kito objekto pozicija jeigu tas objektas turi "BoxConundrum" skripta kitaip null
-
-        //jei objektas deze(stumiamas objektas) atliekame
-        if (box != null)
-        {
-            //Atliekamas kito objekto metodas "BoxPush" kur paduodama kryptis i kuria stumti ir "blockingLayer" lapas kuriame tikrins ar yra i ka galetu atsitrenkti
-            box.BoxPush(direction, blockingLayer);
-        }
-    }
-
 
     // FixedUpdate yra naudojamas fizikai zaidime yra iskvieciamas pastoviai kol zaidimas veikia 
     //Judejimas per komponenta Rigidbody2D blokuojamas istrizas judejimas
