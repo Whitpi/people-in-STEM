@@ -640,11 +640,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 204425033324381246, guid: 06eb31281e15caf418a6336391d22415, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.8498
+      value: 4.75
       objectReference: {fileID: 0}
     - target: {fileID: 204425033324381246, guid: 06eb31281e15caf418a6336391d22415, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.059
+      value: -3.49
       objectReference: {fileID: 0}
     - target: {fileID: 204425033324381246, guid: 06eb31281e15caf418a6336391d22415, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1286,10 +1286,10 @@ MonoBehaviour:
   DialoguePanel: {fileID: 1036098656}
   Dialogas: {fileID: 857992981}
   dialogas:
-  - Do my eyes deceive me, or is that a live mouse in front of me?
+  - Do my eyes deceive me, or is that a living mouse in front of me?
   - Let me give you some advice, my living friend.
   - Sometimes you won't need every book, so be sure to pay attention at the colors!
-  - Also, check the instructions from time to time, as you might find some useful
+  - Also, check the instructions from time to time, as you might find some new useful
     information!
   - Good luck on your journey my friend!
   Continue: {fileID: 1087916295}
@@ -1674,7 +1674,7 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 8854926829754024099, guid: ed20a9ab28bd6964ab8a6f7482e14846, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1948,7 +1948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1036098657
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3523,7 +3523,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "T\u0119sti"
+  m_text: Continue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
